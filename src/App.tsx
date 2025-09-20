@@ -13,6 +13,7 @@ import Database from "./pages/Database";
 import Profile from "./pages/Profile";
 import History from "./pages/History";
 import About from "./pages/About";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/history" element={<History />} />
           <Route path="/about" element={<About />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />

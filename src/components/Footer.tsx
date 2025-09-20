@@ -30,6 +30,9 @@ const Footer = () => {
               <NavLink to="/about" className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors">
                 About
               </NavLink>
+              <NavLink to="/privacy-policy" className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors">
+                Privacy Policy
+              </NavLink>
             </div>
           </div>
 

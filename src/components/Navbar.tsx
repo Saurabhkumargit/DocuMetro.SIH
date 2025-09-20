@@ -2,6 +2,8 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { History, User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import docuMetroLogo from "@/assets/documetro-logo.png";
+import sihLogo from "@/assets/sih-logo.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,13 +22,12 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">K</span>
-            </div>
+            <img src={docuMetroLogo} alt="DocuMetro" className="w-10 h-10" />
             <div>
-              <h1 className="text-xl font-bold text-foreground">KMRL</h1>
-              <p className="text-xs text-muted-foreground hidden sm:block">Document Management</p>
+              <h1 className="text-xl font-bold text-foreground">DocuMetro</h1>
+              <p className="text-xs text-muted-foreground">KMRL</p>
             </div>
+            <img src={sihLogo} alt="Smart India Hackathon 2025" className="w-12 h-8 ml-2" />
           </div>
 
           {/* Desktop Navigation */}
