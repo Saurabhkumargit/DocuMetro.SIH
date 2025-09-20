@@ -2,41 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* KMRL Document Management Design System - Teal & White Only */
 
 @layer base {
   :root {
+    /* Base Colors - White background, dark text */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 15%;
 
+    /* Card styling */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 15%;
 
+    /* Popover styling */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Teal (#008080) */
+    --primary: 180 100% 25%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Light teal accents */
+    --secondary: 180 100% 97%;
+    --secondary-foreground: 180 100% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Very light teal */
+    --muted: 180 50% 98%;
+    --muted-foreground: 180 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Medium teal */
+    --accent: 180 100% 90%;
+    --accent-foreground: 180 100% 25%;
 
+    /* Destructive - Keep red for errors */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders and inputs */
+    --border: 180 20% 90%;
+    --input: 180 20% 95%;
+    --ring: 180 100% 25%;
 
-    --radius: 0.5rem;
+    /* Border radius */
+    --radius: 0.75rem;
+
+    /* Custom KMRL Design Tokens */
+    --teal-primary: 180 100% 25%;
+    --teal-light: 180 100% 90%;
+    --teal-shadow: 180 100% 25% / 0.1;
+    --teal-hover: 180 100% 30%;
+    
+    /* Gradients */
+    --gradient-teal: linear-gradient(135deg, hsl(var(--teal-primary)), hsl(var(--teal-hover)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px hsl(var(--teal-shadow));
+    --shadow-button: 0 2px 10px hsl(var(--teal-shadow));
+    --shadow-hover: 0 6px 25px hsl(var(--teal-shadow));
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +127,53 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* KMRL Custom Component Styles */
+  .card-teal {
+    @apply bg-card border border-border rounded-xl shadow-[var(--shadow-card)] transition-[var(--transition-smooth)] hover:shadow-[var(--shadow-hover)];
+  }
+
+  .btn-teal {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium shadow-[var(--shadow-button)] transition-[var(--transition-fast)] hover:bg-[hsl(var(--teal-hover))] hover:shadow-[var(--shadow-hover)] focus:ring-2 focus:ring-ring;
+  }
+
+  .btn-teal-outline {
+    @apply border-2 border-primary text-primary bg-transparent px-6 py-3 rounded-lg font-medium transition-[var(--transition-fast)] hover:bg-primary hover:text-primary-foreground focus:ring-2 focus:ring-ring;
+  }
+
+  .input-teal {
+    @apply border border-border bg-input px-4 py-3 rounded-lg focus:ring-2 focus:ring-ring focus:border-primary transition-[var(--transition-fast)];
+  }
+
+  .nav-link {
+    @apply text-foreground hover:text-primary font-medium transition-[var(--transition-fast)] px-4 py-2 rounded-lg hover:bg-accent;
+  }
+
+  .nav-link-active {
+    @apply text-primary bg-accent font-semibold;
+  }
+
+  .hero-gradient {
+    @apply bg-gradient-to-br from-background to-muted;
+  }
+
+  .text-teal {
+    @apply text-primary;
+  }
+
+  .border-teal {
+    @apply border-primary;
+  }
+
+  .bg-teal {
+    @apply bg-primary;
+  }
+
+  .shadow-teal {
+    @apply shadow-[var(--shadow-card)];
   }
 }
