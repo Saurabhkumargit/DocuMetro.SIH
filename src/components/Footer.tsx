@@ -12,8 +12,9 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">KMRL</h3>
             <p className="text-primary-foreground/80 text-sm">
-              Kochi Metro Rail Limited - Document Management System for efficient
-              handling of organizational documents and streamlined operations.
+              Kochi Metro Rail Limited - Document Management System for
+              efficient handling of organizational documents and streamlined
+              operations.
             </p>
           </div>
 
@@ -21,19 +22,34 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="space-y-2">
-              <NavLink to="/" className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors">
+              <NavLink
+                to="/"
+                className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors"
+              >
                 Home
               </NavLink>
-              <NavLink to="/chatbot" className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors">
+              <NavLink
+                to="/chatbot"
+                className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors"
+              >
                 Chatbot
               </NavLink>
-              <NavLink to="/database" className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors">
+              <NavLink
+                to="/database"
+                className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors"
+              >
                 Database
               </NavLink>
-              <NavLink to="/about" className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors">
+              <NavLink
+                to="/about"
+                className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors"
+              >
                 About
               </NavLink>
-              <NavLink to="/privacy-policy" className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors">
+              <NavLink
+                to="/privacy-policy"
+                className="block text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors"
+              >
                 Privacy Policy
               </NavLink>
             </div>
@@ -52,8 +68,10 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-6 text-center">
           <p className="text-primary-foreground/80 text-sm">
-            © 2025 Kochi Metro Rail Limited. All rights reserved. | SIH 2025 Project
+            © 2025 Kochi Metro Rail Limited. All rights reserved. | SIH 2025
+            Project
           </p>
+          <p className="pt-2">Made with 💚 by Metro Mavericks</p>
         </div>
       </div>
     </footer>

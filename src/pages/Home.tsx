@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Upload, FileText, BarChart3, MessageSquare, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,10 +13,11 @@ const Home = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   const userName = localStorage.getItem("userName") || "User";
 
-  if (!isAuthenticated) {
-    navigate("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
 
   const actionCards = [
     {
