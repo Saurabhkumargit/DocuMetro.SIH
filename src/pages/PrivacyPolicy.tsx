@@ -1,6 +1,9 @@
 import Layout from "@/components/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PrivacyPolicy = () => {
+  const { t } = useLanguage();
+  
   return (
     <Layout>
       <div className="min-h-screen bg-background py-16">

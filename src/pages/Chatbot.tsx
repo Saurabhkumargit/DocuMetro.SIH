@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Bot, User, FileText } from "lucide-react";
+import { Send, Bot, User, FileText, Mic, MicOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 
 interface Message {
   id: string;
@@ -14,10 +16,20 @@ interface Message {
 }
 
 const Chatbot = () => {
+  const { t } = useLanguage();
+  const {
+    isListening,
+    transcript,
+    isSupported,
+    startListening,
+    stopListening,
+    resetTranscript,
+  } = useSpeechRecognition();
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! I'm your KMRL document assistant. I can help you find information from uploaded documents, search the database, and answer questions about KMRL policies and procedures. What would you like to know?",
+      text: t('chatbot.welcome'),
       sender: "bot",
       timestamp: new Date(),
       citations: []
@@ -34,6 +46,18 @@ const Chatbot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Handle voice transcript
+  useEffect(() => {
+    if (transcript) {
+      setNewMessage(transcript);
+      // Auto-submit the voice input
+      setTimeout(() => {
+        handleSendMessage(new Event('submit') as any);
+        resetTranscript();
+      }, 500);
+    }
+  }, [transcript]);
 
   // Mock responses for demo purposes
   const mockResponses = [
@@ -89,10 +113,10 @@ const Chatbot = () => {
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
             <Bot className="h-8 w-8 text-teal" />
-            KMRL Document Assistant
+            {t('chatbot.title')}
           </h1>
           <p className="text-muted-foreground mt-2">
-            Ask questions about your documents and get instant answers with citations
+            {t('chatbot.subtitle')}
           </p>
         </div>
 
@@ -125,7 +149,7 @@ const Chatbot = () => {
                     {/* Citations */}
                     {message.citations && message.citations.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-border/20">
-                        <p className="text-xs font-medium text-muted-foreground mb-2">Sources:</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-2">{t('chatbot.sources')}</p>
                         <div className="space-y-1">
                           {message.citations.map((citation, index) => (
                             <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -170,13 +194,31 @@ const Chatbot = () => {
 
         {/* Input Form */}
         <form onSubmit={handleSendMessage} className="flex gap-2">
-          <Input
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Ask about documents, policies, procedures..."
-            className="input-teal flex-1"
-            disabled={isTyping}
-          />
+          <div className="flex-1 relative">
+            <Input
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              placeholder={isListening ? t('chatbot.voice.listening') : t('chatbot.placeholder')}
+              className="input-teal pr-12"
+              disabled={isTyping || isListening}
+            />
+            
+            {/* Voice Input Button */}
+            {isSupported && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={isListening ? stopListening : startListening}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 text-primary hover:bg-accent"
+                disabled={isTyping}
+                title={isListening ? t('chatbot.voice.stop') : t('chatbot.voice.start')}
+              >
+                {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+              </Button>
+            )}
+          </div>
+          
           <Button type="submit" className="btn-teal" disabled={isTyping || !newMessage.trim()}>
             <Send className="h-4 w-4" />
           </Button>

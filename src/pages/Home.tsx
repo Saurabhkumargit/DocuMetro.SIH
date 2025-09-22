@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/Layout";
 import heroImage from "@/assets/kmrl-hero.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   const userName = localStorage.getItem("userName") || "User";
 
@@ -17,29 +19,29 @@ const Home = () => {
 
   const actionCards = [
     {
-      title: "Upload Document",
-      description: "Add new documents to the system with detailed metadata",
+      title: t('home.upload.title'),
+      description: t('home.upload.description'),
       icon: Upload,
       action: () => navigate("/upload"),
       color: "bg-primary text-primary-foreground",
     },
     {
-      title: "My Documents",
-      description: "View and manage your uploaded documents",
+      title: t('home.documents.title'),
+      description: t('home.documents.description'),
       icon: FileText,
       action: () => navigate("/my-documents"),
       color: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
     },
     {
-      title: "Dashboard",
-      description: "View system analytics and document statistics",
+      title: t('home.dashboard.title'),
+      description: t('home.dashboard.description'),
       icon: BarChart3,
       action: () => navigate("/database"),
       color: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
     },
     {
-      title: "Ask Chatbot",
-      description: "Get instant answers from the document database",
+      title: t('home.chatbot.title'),
+      description: t('home.chatbot.description'),
       icon: MessageSquare,
       action: () => navigate("/chatbot"),
       color: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
@@ -54,21 +56,19 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-                Welcome back,{" "}
-                <span className="text-teal">{userName}</span>
+                {t('home.title')}
               </h1>
               <p className="text-xl text-muted-foreground mt-6 leading-relaxed">
-                Manage your documents efficiently with KMRL's intelligent document 
-                management system. Upload, search, and retrieve documents with ease.
+                {t('home.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Button onClick={() => navigate("/upload")} className="btn-teal">
                   <Plus className="mr-2 h-5 w-5" />
-                  Upload Document
+                  {t('home.upload.title')}
                 </Button>
                 <Button onClick={() => navigate("/chatbot")} className="btn-teal-outline">
                   <MessageSquare className="mr-2 h-5 w-5" />
-                  Ask Chatbot
+                  {t('home.chatbot.title')}
                 </Button>
               </div>
             </div>

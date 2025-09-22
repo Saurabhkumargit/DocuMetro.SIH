@@ -1,8 +1,11 @@
 import { Award, Target, Users, Zap } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: Zap,
@@ -40,11 +43,10 @@ const About = () => {
         <section className="text-center mb-16">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              About KMRL Document Management
+              {t('about.title')}
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              A comprehensive solution designed for Smart India Hackathon 2025 to address 
-              the document overload challenge at Kochi Metro Rail Limited.
+              {t('about.subtitle')}
             </p>
           </div>
         </section>
